@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @method static create(array $validated)
+ * @method static select(string $string, string $string1)
  */
 class Role extends Model
 {
