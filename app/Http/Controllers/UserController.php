@@ -23,7 +23,7 @@ class UserController extends Controller
             $query->where('name', 'like', "$search%");
         }
 
-        $users = $query->with('roles')->orderBy('name')->get();
+        $users = $query->with('roles')->orderBy('created_at', 'desc')->get();
 
         return view('user.index', compact('users', 'search'));
     }
