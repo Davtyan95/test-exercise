@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/permission', [PermissionController::class, 'index'])->name('permission.index');
     Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+    Route::match(['get', 'post'], '/user', [UserController::class, 'index'])->name('user.index');
 });
 
 
