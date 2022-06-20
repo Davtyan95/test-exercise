@@ -62,3 +62,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Description
+
+This app was developed to create permission role and user with CLI
+
+## Requirements
+
+<p>php version: ^8.0</p>
+<p>mysql version: 8.0</p>
+
+## Deployment
+
+The first you must create database and add db access data in env file, before then clear configs and caches.
+Where db connection succeed you must run  "php artisan migrate" command to create tables.
+When app is working you can run follows commands
+
+<p style="color:yellow">Will be better if you run commands in order  </p>
+
+<p style="color:red">Step 1</p>
+If you want to create permission run command bellow
+<p style="color:green">php artisan create:permission</p>   
+
+<p style="color:red">Step 2</p>
+If you want to create role run command bellow
+<p style="color:green">php artisan create:role</p>  
+
+<p style="color:red">Step 3</p>
+If you want to create user run command bellow
+<p style="color:green">php artisan create:user</p>  
+
+ 
