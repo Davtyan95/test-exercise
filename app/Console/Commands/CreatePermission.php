@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Interfaces\PermissionInterface;
 use App\Models\Permission;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
@@ -22,6 +23,14 @@ class CreatePermission extends Command
      * @var string
      */
     protected $description = 'Create a permission';
+
+    private PermissionInterface $permission;
+
+    public function __construct(PermissionInterface $permission)
+    {
+        parent::__construct();
+        $this->permission = $permission;
+    }
 
 
     /**
@@ -47,7 +56,7 @@ class CreatePermission extends Command
             return 1;
         }
 
-        Permission::create($validator->validated());
+        $this->permission->create($validator->validated());
 
         $this->info('Permission successfully created');
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * @param Request $request
      * @return Factory|View|Application
      */
     public function index(Request $request): Factory|View|Application

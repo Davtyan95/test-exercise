@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Interfaces\PermissionInterface;
+use App\Interfaces\RoleInterface;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Console\Command;
@@ -24,6 +26,23 @@ class CreateRole extends Command
      */
     protected $description = 'Create a role';
 
+    /**
+     * @var PermissionInterface
+     */
+    private PermissionInterface $permission;
+
+    /**
+     * @var RoleInterface
+     */
+    private RoleInterface $role;
+
+    public function __construct(PermissionInterface $permission, RoleInterface $role)
+    {
+        parent::__construct();
+        $this->permission = $permission;
+        $this->role = $role;
+    }
+
 
     /**
      * Execute the console command.
@@ -32,7 +51,7 @@ class CreateRole extends Command
      */
     public function handle()
     {
-        $permissions = Permission::select('id','name')->get();
+        $permissions = $this->permission->all();
 
         if (!count($permissions)) {
             $this->info('Please the first add a permission');
@@ -75,7 +94,7 @@ class CreateRole extends Command
             return $permission->id;
         })->toArray();
 
-        $role = Role::create($validator->validated());
+        $role = $this->role->create($validator->validated());
         $role->permissions()->sync($permissionIds);
 
         $this->info('Permission successfully created.');
