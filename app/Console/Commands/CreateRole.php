@@ -52,7 +52,7 @@ class CreateRole extends Command
         ], ['name' => ['required', 'unique:roles']]);
 
         if ($validator->fails()) {
-            $this->warn('Role not created. See error messages below:');
+            $this->warn('Role not created. See error messages below');
 
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
